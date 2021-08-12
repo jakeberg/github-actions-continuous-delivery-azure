@@ -40,7 +40,7 @@ jobs:
       - name: Create Azure deployment
         if: success()
         run: |
-          az deployment group create --name "jake-deployment" --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file "templates/webapp.json"
+          az deployment group create --name "jake-deployment" --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file "templates/spa.json" --parameters "templates/spa.parameters.json" 
 
   destroy-azure-resources:
     runs-on: ubuntu-latest
