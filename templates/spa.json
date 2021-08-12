@@ -23,10 +23,10 @@
             "repositoryToken": {
                 "type": "securestring"
             },
-            "appLocation": {
+            "outputLocation": {
                 "type": "string"
             },
-            "apiLocation": {
+            "appBuildCommand": {
                 "type": "string"
             },
             "appArtifactLocation": {
@@ -51,8 +51,8 @@
                     "branch": "[parameters('branch')]",
                     "repositoryToken": "[parameters('repositoryToken')]",
                     "buildProperties": {
-                        "appLocation": "[parameters('appLocation')]",
-                        "apiLocation": "[parameters('apiLocation')]",
+                        "outputLocation": "[parameters('outputLocation')]",
+                        "appBuildCommand": "[parameters('appBuildCommand')]",
                         "appArtifactLocation": "[parameters('appArtifactLocation')]"
                     }
                 },
