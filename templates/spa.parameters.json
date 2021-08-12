@@ -18,10 +18,10 @@
             "value": "https://github.com/jakeberg/github-actions-continuous-delivery-azure"
         },
         "branch": {
-            "value": "main"
+            "value": "use-template-2"
         },
         "repositoryToken": {
-            "value": "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" 
+            "value": "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" 
         },
         "appLocation": {
             "value": "/src"
