@@ -1,6 +1,6 @@
 name: Configure Azure environment
 
-on: 
+on:
   pull_request:
     types: [labeled]
 
@@ -32,15 +32,15 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Create Azure resource group
-        if: success()
-        run: |
-          az group create --location ${{env.AZURE_LOCATION}} --name ${{env.AZURE_RESOURCE_GROUP}} --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}}
+      # - name: Create Azure resource group
+      #   if: success()
+      #   run: |
+      #     az group create --location ${{env.AZURE_LOCATION}} --name ${{env.AZURE_RESOURCE_GROUP}} --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}}
 
       - name: Create Azure deployment
         if: success()
         run: |
-          az deployment group create --name "jake-deployment" --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file "templates/spa.json" --parameters "templates/spa.parameters.json" --parameters --parameters "{ \"repositoryToken\": { \"value\": \"secrets.GH_PAT_AZURE\" }}"
+          az deployment group create --name "jake-deployment" --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file "templates/spa.json" --parameters "templates/spa.parameters.json" --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }}
 
   destroy-azure-resources:
     runs-on: ubuntu-latest
