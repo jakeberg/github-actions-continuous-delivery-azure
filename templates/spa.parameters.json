@@ -20,9 +20,6 @@
         "branch": {
             "value": "use-template-2"
         },
-        "repositoryToken": {
-            "value": "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" 
-        },
         "appLocation": {
             "value": "/src"
         },
