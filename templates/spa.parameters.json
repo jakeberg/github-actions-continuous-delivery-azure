@@ -20,11 +20,11 @@
         "branch": {
             "value": "use-template-2"
         },
-        "appLocation": {
-            "value": "/src"
+        "outputLocation": {
+            "value": "/build"
         },
-        "apiLocation": {
-            "value": ""
+        "appBuildCommand": {
+            "value": "npm run build"
         },
         "appArtifactLocation": {
             "value": "public"
