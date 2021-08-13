@@ -48,4 +48,4 @@ jobs:
       - name: Destroy Azure environment
         if: success()
         run: |
-          az staticwebapp delete -name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}}
+          az staticwebapp delete --name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}}
