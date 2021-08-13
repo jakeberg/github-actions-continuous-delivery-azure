@@ -13,7 +13,7 @@ env:
   TEMPLATE: "templates/spa.json"
 
 jobs:
-  deploy-review-app:
+  deploy-dev-app:
     runs-on: ubuntu-latest
 
     steps:
