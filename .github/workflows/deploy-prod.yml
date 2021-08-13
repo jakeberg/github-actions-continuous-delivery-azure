@@ -3,12 +3,12 @@ name: Production deployment
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   AZURE_RESOURCE_GROUP: cd-with-actions
   AZURE_DEPLOYMENT: "production"
-  BRANCH: "master"
+  BRANCH: "main"
   PARAMS: "templates/prod.parameters.json"
   TEMPLATE: "templates/spa.json"
 
