@@ -16,8 +16,6 @@ jobs:
   deploy-review-app:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.pull_request.labels.*.name, 'deploy review app')
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
