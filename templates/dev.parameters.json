@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
-            "value": "stagedeployment"
+            "value": "devdeployment"
         },
         "location": { 
             "value": "Central US"
@@ -39,7 +39,7 @@
             "value": {
                 "Environment": "Stage",
                 "Project": "Testing SWA with ARM",
-                "ApplicationName": "stagedeployment"
+                "ApplicationName": "devdeployment"
             }
         },
         "appSettings": {
