@@ -20,6 +20,9 @@
             "branch": {
                 "type": "string"
             },
+            "tokenName": {
+                "type": "string"
+            },
             "repositoryToken": {
                 "type": "securestring" 
             },
@@ -54,7 +57,7 @@
                         "outputLocation": "[parameters('outputLocation')]",
                         "appBuildCommand": "[parameters('appBuildCommand')]",
                         "appArtifactLocation": "[parameters('appArtifactLocation')]",
-                        "githubActionSecretNameOverride": "[parameters('branch')]"
+                        "githubActionSecretNameOverride": "[parameters('tokenName')]"
                     }
                 },
                 "sku": {

@@ -23,6 +23,9 @@
         "branch": {
             "value": ""
         },
+        "tokenName": {
+            "value": "AZURE_STATIC_WEB_APPS_API_TOKEN_REVIEW"
+        },
         "outputLocation": {
             "value": "/build"
         },
