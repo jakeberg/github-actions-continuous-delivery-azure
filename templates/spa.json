@@ -57,7 +57,8 @@
                         "outputLocation": "[parameters('outputLocation')]",
                         "appBuildCommand": "[parameters('appBuildCommand')]",
                         "appArtifactLocation": "[parameters('appArtifactLocation')]",
-                        "githubActionSecretNameOverride": "[parameters('tokenName')]"
+                        "githubActionSecretNameOverride": "[parameters('tokenName')]",
+                        "skipGithubActionWorkflowGeneration": true
                     }
                 },
                 "sku": {
