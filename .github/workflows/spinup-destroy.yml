@@ -40,7 +40,7 @@ jobs:
       - name: Create Azure deployment
         if: success()
         run: |
-          az deployment group create --name "jake-deployment" --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file "templates/spa.json" --parameters "templates/spa.parameters.json" --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }}
+          az deployment group create --name "jake-deployment" --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file "templates/spa.json" --parameters "templates/spa.parameters.json" --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }} branch=${{ env.GITHUB_BASE_REF }}
 
   destroy-azure-resources:
     runs-on: ubuntu-latest
