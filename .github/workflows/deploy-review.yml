@@ -1,0 +1,51 @@
+name: Configure Azure environment
+
+on:
+  pull_request:
+    types: [labeled]
+
+env:
+  AZURE_RESOURCE_GROUP: cd-with-actions
+  AZURE_DEPLOYMENT: "review"
+  BRANCH: "deployment"
+  PARAMS: "templates/review.parameters.json"
+  TEMPLATE: "templates/spa.json"
+
+jobs:
+  deploy-review-app:
+    runs-on: ubuntu-latest
+
+    if: contains(github.event.pull_request.labels.*.name, 'deploy review app')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create Azure deployment
+        if: success()
+        run: |
+          az deployment group create --name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file ${{env.TEMPLATE}} --parameters ${{ env.PARAMS }} --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }} branch=${{ env.BRANCH }}
+
+  destroy-review-app:
+    runs-on: ubuntu-latest
+
+    if: contains(github.event.pull_request.labels.*.name, 'destroy review app')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Destroy Azure environment
+        if: success()
+        run: |
+          az staticwebapp delete --name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}} --yes
