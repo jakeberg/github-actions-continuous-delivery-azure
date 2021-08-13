@@ -17,6 +17,9 @@
         "repositoryUrl": {
             "value": "https://github.com/jakeberg/github-actions-continuous-delivery-azure"
         },
+        "repositoryToken": {
+            "value": ""
+        },
         "branch": {
             "value": "use-template-2"
         },
