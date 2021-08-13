@@ -21,7 +21,7 @@
                 "type": "string"
             },
             "repositoryToken": {
-                "type": "securestring"
+                "type": "securestring" 
             },
             "outputLocation": {
                 "type": "string"
