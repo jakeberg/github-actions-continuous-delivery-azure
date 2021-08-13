@@ -7,15 +7,8 @@ on:
 env:
   PACKAGES_TOKEN: ${{secrets.PACKAGES_TOKEN}}
   AZURE_RESOURCE_GROUP: cd-with-actions
-  AZURE_APP_PLAN: actions-ttt-deployment
+  AZURE_APP_PLAN: actions-demo-deployment
   AZURE_LOCATION: '"Central US"'
-  #################################################
-  ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
-  #################################################
-  #################################################
-  ### REPLACE USERNAME WITH GH USERNAME         ###
-  AZURE_WEBAPP_NAME: jakeberg-ttt-app
-  #################################################
 
 jobs:
   setup-up-azure-resources:
@@ -24,27 +17,18 @@ jobs:
     if: contains(github.event.pull_request.labels.*.name, 'spin up environment')
 
     steps:
-      - name: branch name
-        run: echo running on branch ${GITHUB_REF##*/}
-      - name: branch name 2
-        run: echo GITHUB_REF - ${GITHUB_REF}
-      # - name: Checkout repository
-      #   uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # - name: Azure login
-      #   uses: azure/login@v1
-      #   with:
-      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # - name: Create Azure resource group
-      #   if: success()
-      #   run: |
-      #     az group create --location ${{env.AZURE_LOCATION}} --name ${{env.AZURE_RESOURCE_GROUP}} --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}}
-
-      # - name: Create Azure deployment
-      #   if: success()
-      #   run: |
-      #     az deployment group create --name "jake-deployment" --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file "templates/spa.json" --parameters "templates/spa.parameters.json" --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }} branch=${{ env.GITHUB_BASE_REF }}
+      - name: Create Azure resource group
+        if: success()
+        run: |
+          az group create --location ${{env.AZURE_LOCATION}} --name ${{env.AZURE_RESOURCE_GROUP}} --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}}
 
   destroy-azure-resources:
     runs-on: ubuntu-latest
