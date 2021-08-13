@@ -53,7 +53,8 @@
                     "buildProperties": {
                         "outputLocation": "[parameters('outputLocation')]",
                         "appBuildCommand": "[parameters('appBuildCommand')]",
-                        "appArtifactLocation": "[parameters('appArtifactLocation')]"
+                        "appArtifactLocation": "[parameters('appArtifactLocation')]",
+                        "githubActionSecretNameOverride": "[parameters('branch')]"
                     }
                 },
                 "sku": {
