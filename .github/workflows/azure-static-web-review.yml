@@ -5,7 +5,7 @@ on:
     branches:
       - review
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [synchronize, reopened, closed]
     branches:
       - review
 
