@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - review
-  pull_request:
-    types: [synchronize, reopened, closed]
+  pull_request_target:
+    types: [opened, synchronize, reopened, closed]
     branches:
       - review
 
