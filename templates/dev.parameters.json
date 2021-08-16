@@ -21,7 +21,7 @@
             "value": ""
         },
         "branch": {
-            "value": ""
+            "value": "dev"
         },
         "tokenName": {
             "value": "AZURE_STATIC_WEB_APPS_API_TOKEN_DEV"

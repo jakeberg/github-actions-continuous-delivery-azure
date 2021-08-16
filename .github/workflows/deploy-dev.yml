@@ -1,20 +1,20 @@
-name: Production deployment
+name: Dev deployment
 
 on:
-  push:
-    branches:
-      - dev
+  pull_request:
+    types: [labeled]
 
 env:
   AZURE_RESOURCE_GROUP: cd-with-actions
   AZURE_DEPLOYMENT: "dev"
-  BRANCH: "dev"
   PARAMS: "templates/dev.parameters.json"
   TEMPLATE: "templates/spa.json"
 
 jobs:
   deploy-dev-app:
     runs-on: ubuntu-latest
+
+    if: contains(github.event.pull_request.labels.*.name, 'deploy dev app')
 
     steps:
       - name: Checkout repository
@@ -28,4 +28,4 @@ jobs:
       - name: Create Azure deployment
         if: success()
         run: |
-          az deployment group create --name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file ${{env.TEMPLATE}} --parameters ${{ env.PARAMS }} --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }} branch=${{ env.BRANCH }}
+          az deployment group create --name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file ${{env.TEMPLATE}} --parameters ${{ env.PARAMS }} --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }}
