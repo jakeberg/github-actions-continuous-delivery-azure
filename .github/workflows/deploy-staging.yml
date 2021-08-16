@@ -1,14 +1,12 @@
-name: Production deployment
+name: Stage the app
 
 on: 
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [labeled]
 
 env:
-  AZURE_RESOURCE_GROUP: cd-with-actions
-  AZURE_APP_PLAN: actions-ttt-deployment
-  AZURE_LOCATION: '"Central US"'
+  DOCKER_IMAGE_NAME: jakeberg-azure-ttt
+  IMAGE_REGISTRY_URL: docker.pkg.github.com
   #################################################
   ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
   #################################################
@@ -19,6 +17,8 @@ env:
 
 jobs:
   build:
+    if: contains(github.event.pull_request.labels.*.name, 'stage')
+
     runs-on: ubuntu-latest
 
     steps:
