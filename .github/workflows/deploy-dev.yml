@@ -1,9 +1,8 @@
-name: Production deployment
+name: Dev deployment
 
 on:
-  push:
-    branches:
-      - dev
+  pull_request:
+    types: [labeled]
 
 env:
   AZURE_RESOURCE_GROUP: cd-with-actions
