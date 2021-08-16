@@ -1,4 +1,4 @@
-name: Production deployment
+name: Configure Azure environment
 
 on:
   pull_request:
@@ -6,15 +6,15 @@ on:
 
 env:
   AZURE_RESOURCE_GROUP: cd-with-actions
-  AZURE_DEPLOYMENT: "production"
-  PARAMS: "templates/prod.parameters.json"
+  AZURE_DEPLOYMENT: "review"
+  PARAMS: "templates/review.parameters.json"
   TEMPLATE: "templates/spa.json"
 
 jobs:
-  deploy-prod-app:
+  deploy-review-app:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.pull_request.labels.*.name, 'deploy prod app')
+    if: contains(github.event.pull_request.labels.*.name, 'deploy review app')
 
     steps:
       - name: Checkout repository
