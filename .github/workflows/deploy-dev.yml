@@ -1,4 +1,4 @@
-name: Production deployment
+name: Dev deployment
 
 on:
   pull_request:
@@ -6,15 +6,15 @@ on:
 
 env:
   AZURE_RESOURCE_GROUP: cd-with-actions
-  AZURE_DEPLOYMENT: "production"
-  PARAMS: "templates/prod.parameters.json"
+  AZURE_DEPLOYMENT: "dev"
+  PARAMS: "templates/dev.parameters.json"
   TEMPLATE: "templates/spa.json"
 
 jobs:
-  deploy-prod-app:
+  deploy-dev-app:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.pull_request.labels.*.name, 'deploy prod app')
+    if: contains(github.event.pull_request.labels.*.name, 'deploy dev app')
 
     steps:
       - name: Checkout repository
