@@ -8,7 +8,6 @@ on:
 env:
   AZURE_RESOURCE_GROUP: cd-with-actions
   AZURE_DEPLOYMENT: "dev"
-  BRANCH: "dev"
   PARAMS: "templates/dev.parameters.json"
   TEMPLATE: "templates/spa.json"
 
@@ -28,4 +27,4 @@ jobs:
       - name: Create Azure deployment
         if: success()
         run: |
-          az deployment group create --name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file ${{env.TEMPLATE}} --parameters ${{ env.PARAMS }} --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }} branch=${{ env.BRANCH }}
+          az deployment group create --name ${{env.AZURE_DEPLOYMENT}} --resource-group ${{env.AZURE_RESOURCE_GROUP}} --template-file ${{env.TEMPLATE}} --parameters ${{ env.PARAMS }} --parameters repositoryToken=${{ secrets.GH_PAT_AZURE }}
